@@ -40,6 +40,10 @@ public class Person implements Serializable {
     
     @ManyToMany(mappedBy = "persons",  cascade = CascadeType.PERSIST)
     private List<SwimStyle> styles;
+    
+    @OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
+    private List<LinkTeamPerson> teams;
+    
 
     public List<SwimStyle> getStyles() {
         return styles;
@@ -112,5 +116,24 @@ public class Person implements Serializable {
     public void setYear(int year) {
         this.year = year;
     }
+
+    public Person(String name, int year, Address address, List<Fee> fees, List<SwimStyle> styles, List<LinkTeamPerson> teams) {
+        this.name = name;
+        this.year = year;
+        this.address = address;
+        this.fees = fees;
+        this.styles = styles;
+        this.teams = teams;
+    }
+
+    public List<LinkTeamPerson> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<LinkTeamPerson> teams) {
+        this.teams = teams;
+    }
+    
+    
     
 }

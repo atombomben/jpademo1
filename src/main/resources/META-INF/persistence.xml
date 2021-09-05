@@ -7,6 +7,8 @@
     <class>dat3.jpademo.entities.Fee</class>
     <class>dat3.jpademo.entities.SwimStyle</class>
     <class>dat3.jpademo.entities.SwimStylePerson</class>
+    <class>dat3.jpademo.entities.LinkTeamPerson</class>
+    <class>dat3.jpademo.entities.Team</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/startcode?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="dev"/>
