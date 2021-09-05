@@ -108,7 +108,6 @@ public class Tester {
         }
         
         populate(em);
-        allPersonsAndFees(em);
         
         em.close();
                
@@ -189,27 +188,6 @@ public class Tester {
         
         
     
-    }
-    
-    public static void allPersonsAndFees(EntityManager em) {
-        
-        TypedQuery<Person> q1 = em.createQuery("SELECT p FROM Person p", Person.class);
-        List<Person> persons = q1.getResultList();
-        for (Person p : persons) {
-            String str = p.getName() + " = ";
-            for (Fee f : p.getFees()) {
-                str = str + f.getAmount() + " | ";
-               
-            }
-            System.out.println(str);
-        }
-        
-    }
-    
-    public static void numberOfSwimStyles(EntityManager em) {
-        
-        
-        
     }
     
 }

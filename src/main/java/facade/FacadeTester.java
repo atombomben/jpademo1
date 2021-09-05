@@ -22,6 +22,7 @@ public class FacadeTester {
     public static void main(String[] args) {
         
         PersonFacade personFacade = PersonFacade.getPersonFacade("pu");
+        FeeFacade feeFacade = FeeFacade.getFeeFacade("pu");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
         EntityManager em = emf.createEntityManager();
         
@@ -38,10 +39,12 @@ public class FacadeTester {
         Fee f1 = new Fee(100);
         Fee f2 = new Fee(200);
         Fee f3 = new Fee(300);
+        Fee f4 = new Fee(50);
        
         p1.addFee(f1);
         p1.addFee(f3);
         p2.addFee(f2);
+        p2.addFee(f4);
         
         SwimStyle s1 = new SwimStyle("Crawl");
         SwimStyle s2 = new SwimStyle("ButterFly");
@@ -64,6 +67,11 @@ public class FacadeTester {
         em.getTransaction().commit();
         
         personFacade.allPersonsAndFees(em);
+        personFacade.allPersonsAndSwimStyles(em);
+        personFacade.getPersonsByStyleName(em, "Crawl");
+        
+        feeFacade.findAllFees(em);
+        feeFacade.findLowAndHighFee(em);
         
         
         em.close();

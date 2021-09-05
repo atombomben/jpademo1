@@ -5,8 +5,7 @@
  */
 package facade;
 
-import dat3.jpademo.entities.Fee;
-import dat3.jpademo.entities.Person;
+import dat3.jpademo.entities.*;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -47,5 +46,40 @@ public class PersonFacade {
         }
         
     }
+    
+    public void allPersonsAndSwimStyles (EntityManager em) {
+        TypedQuery<Person> q1 = em.createQuery("SELECT p FROM Person p", Person.class);
+        List<Person> persons = q1.getResultList();
+        for (Person p : persons) {
+            String allPersonsAndNumberOfSwimStyles = p.getName() + " = ";
+            List<SwimStyle> swimStyles = p.getStyles();
+                
+        
+            System.out.println(allPersonsAndNumberOfSwimStyles + swimStyles.size());
+        }
+        
+    }
+    
+    public Person getPersonById (EntityManager em, long id) {
+        TypedQuery<Person> q1 = em.createQuery("SELECT p FROM Person p WHERE p.p_id = " + id, Person.class);
+        List<Person> persons = q1.getResultList();
+        for (Person p : persons) {
+            return p;
+        }
+        return null;
+        
+    }
+    
+    public void getPersonsByStyleName (EntityManager em, String swimStyle) {
+        TypedQuery<Person> q1 = em.createQuery("SELECT p FROM Person p INNER JOIN p.styles s WHERE s.styleName = :swimStyle", Person.class);
+        q1.setParameter("swimStyle",swimStyle);
+        List<Person> persons = q1.getResultList();
+        for (Person p : persons) {
+            String str = p.getName();
+            System.out.println(str);
+        }
+        
+    }
+    
     
 }
